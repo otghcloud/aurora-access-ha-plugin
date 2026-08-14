@@ -30,7 +30,7 @@ Restart Home Assistant and add the integration through the UI.
 
 The integration subscribes to Aurora MQTT state topics for live lock and sensor updates. It also polls `GET /api/ha/status` every 5 seconds by default as a recovery fallback. Change the fallback interval from the integration's **Configure** options in Home Assistant; valid values are 2-300 seconds. Device commands are sent to `POST /api/ha/webhook` with the configured token.
 
-For live updates, configure Home Assistant's MQTT integration against the same broker used by Aurora. If MQTT is unavailable, entities remain functional through HTTP polling.
+For live updates, configure Home Assistant's MQTT integration against the same broker used by Aurora Access. If MQTT is unavailable, entities remain functional through HTTP polling.
 
 ## Supported Platforms
 
@@ -45,5 +45,3 @@ Compile-check the Python package locally with:
 ```bash
 python3 -m compileall -q custom_components
 ```
-
-The integration expects the API contract documented in `../docs/home-assistant.md`.

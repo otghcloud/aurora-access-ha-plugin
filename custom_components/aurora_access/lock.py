@@ -17,6 +17,7 @@ async def async_setup_entry(hass, entry, async_add_entities) -> None:
 
 class AuroraLock(AuroraEntity, LockEntity):
     _attr_code_format = None
+    _attr_icon = "mdi:shield-lock"
 
     @property
     def device_type(self) -> str:
