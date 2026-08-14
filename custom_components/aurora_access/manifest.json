@@ -1,0 +1,11 @@
+{
+  "domain": "aurora_access",
+  "name": "Aurora Access Control",
+  "codeowners": ["@otghcloud"],
+  "config_flow": true,
+  "documentation": "https://github.com/otghcloud/aurora-access",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/otghcloud/aurora-access/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

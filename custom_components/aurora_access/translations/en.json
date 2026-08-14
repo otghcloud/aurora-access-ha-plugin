@@ -1,0 +1,29 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Aurora Access Control",
+        "description": "Enter the URL and Sanctum token for your Aurora Access Control API.",
+        "data": {
+          "base_url": "API base URL",
+          "token": "API token",
+          "area_id": "Optional area ID"
+        }
+      }
+    },
+    "init": {
+      "title": "Aurora Access Control options",
+      "description": "Configure how frequently Home Assistant polls Aurora for device status.",
+      "data": {
+        "scan_interval": "Polling interval (seconds)"
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the Aurora API.",
+      "invalid_auth": "The Aurora API token was rejected."
+    },
+    "abort": {
+      "already_configured": "This Aurora API endpoint is already configured."
+    }
+  }
+}
