@@ -27,9 +27,8 @@ class AuroraEntity(CoordinatorEntity[AuroraDataUpdateCoordinator]):
         self._attr_device_info = {
             "identifiers": {(DOMAIN, self._attr_unique_id)},
             "name": device.get("name"),
-            "manufacturer": "Aurora",
+            "manufacturer": "Aurora Technology",
             "model": "Access Control",
-            "icon": "mdi:shield-lock",
             "suggested_area": area.get("name"),
         }
         self._mqtt_unsubscribe = None
