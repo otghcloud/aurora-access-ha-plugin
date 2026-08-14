@@ -22,7 +22,7 @@ class AuroraEntity(CoordinatorEntity[AuroraDataUpdateCoordinator]):
         self.device_id = str(device["id"])
         self.device_data = device
         self._attr_name = device.get("name")
-        self._attr_icon = "mdi:shield-lock"
+#        self._attr_icon = "mdi:shield-lock"
         self._attr_unique_id = device.get("unique_id") or f"{DOMAIN}_{self.device_id}"
         self._attr_device_info = {
             "identifiers": {(DOMAIN, self._attr_unique_id)},

@@ -17,7 +17,7 @@ async def async_setup_entry(hass, entry, async_add_entities) -> None:
 
 
 class AuroraLight(AuroraEntity, LightEntity):
-    _attr_icon = "mdi:shield-light"
+#    _attr_icon = "mdi:shield-light"
 
     @property
     def device_type(self) -> str:

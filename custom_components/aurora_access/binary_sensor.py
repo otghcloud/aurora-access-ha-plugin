@@ -14,7 +14,7 @@ async def async_setup_entry(hass, entry, async_add_entities) -> None:
 
 
 class AuroraBinarySensor(AuroraEntity, BinarySensorEntity):
-    _attr_icon = "mdi:shield-home"
+#    _attr_icon = "mdi:shield-home"
 
     @property
     def device_type(self) -> str:
