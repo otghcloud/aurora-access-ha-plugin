@@ -2,7 +2,7 @@
   "entity": {
     "number": {
       "autolock_duration": {
-        "name": "Auto-lock duration"
+        "name": "Auto-lock delay"
       }
     },
     "switch": {

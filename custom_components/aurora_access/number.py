@@ -19,6 +19,7 @@ async def async_setup_entry(hass, entry, async_add_entities) -> None:
 class AuroraAutolockDurationNumber(AuroraLockConfigurationEntity, NumberEntity):
     _attr_device_class = NumberDeviceClass.DURATION
     _attr_icon = "mdi:timer-lock"
+    _attr_name = "Auto-lock delay"
     _attr_native_max_value = 3600
     _attr_native_min_value = 0
     _attr_native_step = 1

@@ -17,6 +17,7 @@ async def async_setup_entry(hass, entry, async_add_entities) -> None:
 
 class AuroraAutolockSwitch(AuroraLockConfigurationEntity, SwitchEntity):
     _attr_icon = "mdi:lock-clock"
+    _attr_name = "Auto-lock enabled"
     _attr_translation_key = "autolock"
 
     def __init__(self, coordinator, area: dict[str, Any], device: dict[str, Any]) -> None:
