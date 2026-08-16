@@ -1,4 +1,16 @@
 {
+  "entity": {
+    "number": {
+      "autolock_duration": {
+        "name": "Auto-lock timeout"
+      }
+    },
+    "switch": {
+      "autolock": {
+        "name": "Auto-lock"
+      }
+    }
+  },
   "config": {
     "step": {
       "user": {

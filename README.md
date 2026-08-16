@@ -1,6 +1,6 @@
 # Aurora Access Control for Home Assistant
 
-A Home Assistant custom integration for Aurora Access Control. It polls the Aurora API for locks, binary sensors, and lights, and sends control commands through the authenticated Aurora webhook API.
+A Home Assistant custom integration for Aurora Access Control. It polls the Aurora API for locks, binary sensors, lights, and lock configuration, and sends control commands through the authenticated Aurora webhook API.
 
 ## Installation
 
@@ -37,6 +37,14 @@ For live updates, configure Home Assistant's MQTT integration against the same b
 - `lock`: Lock and unlock doors.
 - `binary_sensor`: Read Aurora sensor state and device class.
 - `light`: Turn lights on/off and control brightness or color when supported.
+- `switch`: Enable or disable auto-lock for an individual lock.
+- `number`: Set an individual lock's auto-lock timeout from 0 to 3600 seconds.
+
+## Auto-lock Controls
+
+Each lock device includes an **Auto-lock** switch and **Auto-lock timeout** number entity. The entities initially show the lock's effective policy, including any inherited area default. Changing either entity creates an explicit per-lock override while preserving the other setting: toggling auto-lock keeps the current timeout, and changing the timeout keeps the current enabled state.
+
+Clear a lock override from the Aurora Access admin interface to return the lock to its area default. Auto-lock configuration uses API polling and an immediate refresh after changes. The current area-scoped MQTT state payload does not identify an individual lock, so it is not used for per-lock auto-lock updates.
 
 ## Development
 

@@ -8,7 +8,7 @@ from .api import AuroraApiClient
 from .const import DOMAIN
 from .coordinator import AuroraDataUpdateCoordinator
 
-PLATFORMS: list[str] = ["binary_sensor", "light", "lock"]
+PLATFORMS: list[str] = ["binary_sensor", "light", "lock", "number", "switch"]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

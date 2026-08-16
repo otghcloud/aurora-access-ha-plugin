@@ -2,6 +2,6 @@
   "name": "Aurora Access Control",
   "content_in_root": false,
   "render_readme": true,
-  "domains": ["binary_sensor", "light", "lock"],
+  "domains": ["binary_sensor", "light", "lock", "number", "switch"],
   "homeassistant": "2026.3.0"
 }
