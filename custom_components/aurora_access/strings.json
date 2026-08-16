@@ -2,12 +2,12 @@
   "entity": {
     "number": {
       "autolock_duration": {
-        "name": "Auto-lock timeout"
+        "name": "Auto-lock duration"
       }
     },
     "switch": {
       "autolock": {
-        "name": "Auto-lock"
+        "name": "Auto-lock enabled"
       }
     }
   },
