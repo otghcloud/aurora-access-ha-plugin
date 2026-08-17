@@ -2,7 +2,7 @@
 
 # Aurora Access Control for Home Assistant
 
-A Home Assistant custom integration for Aurora Access Control. It polls the Aurora API for locks, binary sensors, lights, and lock configuration, and sends control commands through the authenticated Aurora webhook API.
+A Home Assistant custom integration for [Aurora Access Control](https://github.com/otghcloud/aurora-access-core). It polls the Aurora API for locks, binary sensors, lights, and lock configuration, and sends control commands through the authenticated Aurora webhook API.
 
 ## Installation
 
