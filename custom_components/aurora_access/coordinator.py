@@ -97,13 +97,33 @@ class AuroraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             for device in area.get("devices", {}).get(device_type, []):
                 updated_device = dict(device)
                 if str(device.get("id")) == str(device_id):
-                    if device_type == "locks" and "lock_power" in message:
-                        updated_device["state"] = "locked" if int(message["lock_power"]) else "unlocked"
+                    if message.get("schema_version") != 1:
+                        devices.append(updated_device)
+                        continue
+
+                    if device_type == "locks" and "state" in message:
+                        updated_device["state"] = message["state"]
                         updated_device["available"] = True
+                        for field in ("confidence", "state_source", "updated_at", "bindings"):
+                            if field in message:
+                                updated_device[field] = message[field]
+                        if isinstance(message.get("autolock"), dict):
+                            updated_device["autolock"] = message["autolock"]
                         changed = True
                     elif device_type == "sensors" and "state" in message:
                         updated_device["state_raw"] = bool(message["state"])
                         updated_device["state"] = "on" if updated_device["state_raw"] else "off"
+                        updated_device["available"] = True
+                        for field in ("device_class", "updated_at", "bindings"):
+                            if field in message:
+                                updated_device[field] = message[field]
+                        changed = True
+                    elif device_type == "lights" and "state" in message:
+                        updated_device["state"] = "on" if message["state"] else "off"
+                        updated_device["available"] = True
+                        for field in ("brightness", "color", "capabilities", "updated_at", "bindings"):
+                            if field in message:
+                                updated_device[field] = message[field]
                         changed = True
                 devices.append(updated_device)
             updated_area["devices"] = {

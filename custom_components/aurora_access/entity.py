@@ -108,10 +108,6 @@ class AuroraLockConfigurationEntity(AuroraEntity):
         return "locks"
 
     @property
-    def mqtt_state_enabled(self) -> bool:
-        return False
-
-    @property
     def autolock(self) -> dict[str, Any]:
         value = self.current_device.get("autolock")
         return value if isinstance(value, dict) else {}

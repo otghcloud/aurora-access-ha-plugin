@@ -1,3 +1,5 @@
+[<img src="https://otgh-static-assets.s3.otgh.cloud/branding/logos/otgh_cloud_2024.png" width="200px" />](https://github.com/otghcloud/aurora-manage)
+
 # Aurora Access Control for Home Assistant
 
 A Home Assistant custom integration for Aurora Access Control. It polls the Aurora API for locks, binary sensors, lights, and lock configuration, and sends control commands through the authenticated Aurora webhook API.
@@ -28,9 +30,9 @@ Restart Home Assistant and add the integration through the UI.
 - **API token:** A Sanctum bearer token with permission to the desired areas.
 - **Area ID:** Optional numeric area filter. Leave empty to expose all permitted areas.
 
-The integration subscribes to Aurora MQTT state topics for live lock and sensor updates. It also polls `GET /api/ha/status` every 5 seconds by default as a recovery fallback. Change the fallback interval from the integration's **Configure** options in Home Assistant; valid values are 2-300 seconds. Device commands are sent to `POST /api/ha/webhook` with the configured token.
+The integration subscribes to Aurora MQTT state topics for live lock, sensor, light, and auto-lock updates. It also polls `GET /api/ha/status` every 5 seconds by default as a recovery fallback. Change the fallback interval from the integration's **Configure** options in Home Assistant; valid values are 2-300 seconds. Device commands are sent to `POST /api/ha/webhook` with the configured token.
 
-For live updates, configure Home Assistant's MQTT integration against the same broker used by Aurora Access. If MQTT is unavailable, entities remain functional through HTTP polling.
+For live updates, configure Home Assistant's MQTT integration against the same broker used by Aurora Access Control. If MQTT is unavailable, entities remain functional through HTTP polling.
 
 ## Supported Platforms
 
@@ -44,12 +46,4 @@ For live updates, configure Home Assistant's MQTT integration against the same b
 
 Each lock device includes an **Auto-lock** switch and **Auto-lock timeout** number entity. The entities initially show the lock's effective policy, including any inherited area default. Changing either entity creates an explicit per-lock override while preserving the other setting: toggling auto-lock keeps the current timeout, and changing the timeout keeps the current enabled state.
 
-Clear a lock override from the Aurora Access admin interface to return the lock to its area default. Auto-lock configuration uses API polling and an immediate refresh after changes. The current area-scoped MQTT state payload does not identify an individual lock, so it is not used for per-lock auto-lock updates.
-
-## Development
-
-Compile-check the Python package locally with:
-
-```bash
-python3 -m compileall -q custom_components
-```
+Clear a lock override from the Aurora Access admin interface to return the lock to its area default. Auto-lock configuration is synchronized immediately through the lock's retained MQTT state topic, with HTTP polling providing recovery if MQTT is unavailable.

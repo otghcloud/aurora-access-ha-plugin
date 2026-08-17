@@ -45,7 +45,7 @@
     },
     "abort": {
       "already_configured": "This Aurora API endpoint is already configured.",
-      "reconfigure_successful": "[%key:common::config_flow::abort::reconfigure_successful%]"
+      "reconfigure_successful": "Aurora Access Control has been updated."
     }
   }
 }
