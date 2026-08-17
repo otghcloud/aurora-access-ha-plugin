@@ -2,7 +2,7 @@
 
 # Aurora Access Control for Home Assistant
 
-A Home Assistant custom integration for [Aurora Access Control](https://github.com/otghcloud/aurora-access-core). It polls the Aurora API for locks, binary sensors, lights, and lock configuration, and sends control commands through the authenticated Aurora webhook API.
+A Home Assistant custom integration for [Aurora Access Control](https://github.com/otghcloud/aurora-access-core). It polls the Aurora Access Control API for locks, binary sensors, lights, and lock configuration, and sends control commands through the authenticated Aurora webhook API.
 
 ## Installation
 
@@ -26,7 +26,7 @@ Restart Home Assistant and add the integration through the UI.
 
 ## Configuration
 
-- **API base URL:** The Aurora application URL, without a trailing slash.
+- **API base URL:** The Aurora Access Control application URL, without a trailing slash.
 - **API token:** A Sanctum bearer token with permission to the desired areas.
 - **Area ID:** Optional numeric area filter. Leave empty to expose all permitted areas.
 
@@ -41,9 +41,3 @@ For live updates, configure Home Assistant's MQTT integration against the same b
 - `light`: Turn lights on/off and control brightness or color when supported.
 - `switch`: Enable or disable auto-lock for an individual lock.
 - `number`: Set an individual lock's auto-lock timeout from 0 to 3600 seconds.
-
-## Auto-lock Controls
-
-Each lock device includes an **Auto-lock** switch and **Auto-lock timeout** number entity. The entities initially show the lock's effective policy, including any inherited area default. Changing either entity creates an explicit per-lock override while preserving the other setting: toggling auto-lock keeps the current timeout, and changing the timeout keeps the current enabled state.
-
-Clear a lock override from the Aurora Access admin interface to return the lock to its area default. Auto-lock configuration is synchronized immediately through the lock's retained MQTT state topic, with HTTP polling providing recovery if MQTT is unavailable.
