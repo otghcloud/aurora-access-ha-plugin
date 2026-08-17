@@ -62,6 +62,40 @@ class AuroraConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
         return self.async_show_form(step_id="user", data_schema=schema, errors=errors)
 
+    async def async_step_reconfigure(self, user_input: dict[str, str] | None = None):
+        errors: dict[str, str] = {}
+        config_entry = self._get_reconfigure_entry()
+
+        if user_input is not None:
+            try:
+                await _validate_input(self.hass, user_input)
+            except AuroraApiAuthError:
+                errors["base"] = "invalid_auth"
+            except AuroraApiError:
+                errors["base"] = "cannot_connect"
+            else:
+                return self.async_update_reload_and_abort(
+                    config_entry,
+                    data_updates=user_input,
+                )
+
+        schema = vol.Schema(
+            {
+                vol.Required(
+                    CONF_BASE_URL,
+                    default=config_entry.data[CONF_BASE_URL],
+                ): str,
+                vol.Required(CONF_TOKEN, default=config_entry.data[CONF_TOKEN]): str,
+                vol.Optional(
+                    CONF_AREA_ID,
+                    default=config_entry.data.get(CONF_AREA_ID, ""),
+                ): selector.TextSelector(
+                    selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
+                ),
+            }
+        )
+        return self.async_show_form(step_id="reconfigure", data_schema=schema, errors=errors)
+
 
 class AuroraOptionsFlow(OptionsFlowWithConfigEntry):
     async def async_step_init(self, user_input: dict[str, Any] | None = None):

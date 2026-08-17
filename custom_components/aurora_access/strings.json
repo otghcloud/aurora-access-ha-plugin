@@ -21,6 +21,15 @@
           "token": "API token",
           "area_id": "Optional area ID"
         }
+      },
+      "reconfigure": {
+        "title": "Update Aurora Access Control",
+        "description": "Update the URL, Sanctum token, or optional area for your Aurora Access Control API.",
+        "data": {
+          "base_url": "API base URL",
+          "token": "API token",
+          "area_id": "Optional area ID"
+        }
       }
     },
     "init": {
@@ -35,7 +44,8 @@
       "invalid_auth": "The Aurora API token was rejected."
     },
     "abort": {
-      "already_configured": "This Aurora API endpoint is already configured."
+      "already_configured": "This Aurora API endpoint is already configured.",
+      "reconfigure_successful": "[%key:common::config_flow::abort::reconfigure_successful%]"
     }
   }
 }

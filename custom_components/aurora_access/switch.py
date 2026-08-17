@@ -22,6 +22,7 @@ class AuroraAutolockSwitch(AuroraLockConfigurationEntity, SwitchEntity):
 
     def __init__(self, coordinator, area: dict[str, Any], device: dict[str, Any]) -> None:
         super().__init__(coordinator, area, device, "autolock")
+        self._attr_name = "Auto-lock enabled"
 
     @property
     def is_on(self) -> bool | None:
